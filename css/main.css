@@ -224,17 +224,13 @@ a.neon:hover span:nth-child(4){
    /* ==========================================================================
    Memory Page
    ========================================================================== */
-   main{
-     /* min-height: 80vh; */
-     background-image: url("/img/bgphone.jpg");
-   }
-
    .container{
      display: flex;
      align-items: center;
      justify-content: center;
      flex-direction: column;
-     margin-top: 50%;
+     margin-top: 30%;
+     background-image: url("/img/bgphone.jpg");
    }
 /* ==========================================================================
    Helper classes
