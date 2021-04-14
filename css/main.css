@@ -234,7 +234,7 @@ a.neon:hover span:nth-child(4){
    Memory Page
    ========================================================================== */
    .container{
-     display: flex;
+     /* display: flex; */
      align-items: center;
      justify-content: center;
      flex-direction: column;
@@ -269,7 +269,7 @@ a.neon:hover span:nth-child(4){
   
   .grid { 
     width: 90%; 
-    height: 300px; 
+    height: 80%; 
     display: flex; 
     flex-wrap: wrap; 
     /* margin: 60px auto;  */
