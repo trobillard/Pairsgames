@@ -1,114 +1,153 @@
-let cardArray = [ 
-    { name: "c17", img: "img/cart1.jpg"}, 
-    { name: "c17", img: "img/cart1.jpg"},
-    { name: "c18", img: "img/cart2.jpg"},
-    { name: "c18", img: "img/cart2.jpg"}, 
-    { name: "vegeta", img: "img/cart3.jpg"},
-    { name: "vegeta", img: "img/cart3.jpg"}, 
-    { name: "ttgenial", img: "img/cart4.jpg"},
-    { name: "ttgenial", img: "img/cart4.jpg"},
-    { name: "tsh", img: "img/cart5.jpg"},
-    { name: "tsh", img: "img/cart5.jpg"},
-    { name: "bulma", img: "img/cart6.jpg"},
-    { name: "bulma", img: "img/cart6.jpg"}, 
-    ]; 
-    
-    //define variables and get DOM element
-    
-    let grid = document.querySelector(".grid"); 
-    let scoreBoard = document.querySelector(".scoreBoard"); 
-    let popup = document.querySelector(".popup"); 
-    let playAgain = document.querySelector(".playAgain"); 
-    let clickBoard = document.querySelector(".clickBoard"); 
-    let imgs; 
-    let cardsId = []; 
-    let cardsSelected = []; 
-    let cardsWon = 0; 
-    let clicks = 0;
+// Declaration of the var
 
-    document.addEventListener("DOMContentLoaded", function () {
-        //define functions 
-        
-        createBoard(grid, cardArray); 
-        arrangeCard();
-        playAgain.addEventListener("click", replay); 
-        
-        //add a click function for images 
-        
-        imgs = document.querySelectorAll("img");
-        Array.from(imgs).forEach(img => 
-        img.addEventListener("click", flipCard)
-        ) 
-        });
+// Add a var library where we can add other theme
+var library = {   
+    dbz: [
+      'img/cart1.jpg',
+      'img/cart2.jpg',
+      'img/cart3.jpg',
+      'img/cart4.jpg',
+      'img/cart5.jpg',
+      'img/cart6.jpg',
+      'img/cart1.jpg',
+      'img/cart2.jpg',
+      'img/cart3.jpg',
+      'img/cart4.jpg',
+      'img/cart5.jpg',
+      'img/cart6.jpg',
+    ],
+  }
+  
+  var images = [],
+      tempElt1 = "",
+      tempElt2 = "",
+      click = -1,
+      win = 0,
+      score = 0,
+      time = 0;
+  
+  var preElt = document.querySelector("#pre"),
+      themesElt = document.querySelector("#themes"),
+      boxElts = document.getElementsByClassName("box"),
+      mainElt = document.querySelector(".main"),
+      timeElt = document.querySelector("#time"),
+      scoreElt = document.querySelector("#score"),
+      postElt = document.querySelector("#post"),
+      finalElt = document.querySelector("#final"),
+      againElt = document.querySelector("#again");
 
-    //createBoard function
-
-function createBoard(grid, array) { 
-    popup.style.display = "none"; 
-    array.forEach((arr, index) => { 
-    let img = document.createElement("img"); 
-    img.setAttribute("src", "img/cardback.jpg");
-    img.setAttribute("data-id", index); 
-    grid.appendChild(img); 
-    })
+  // initiate the game with chosen theme
+  themesElt.addEventListener("click", function(e) {
+    if (e.target.classList.contains("themes")) {
+      activateTheme(e.target.id);
+      preElt.classList.add("hidden");
     }
-    
-    // arrangeCard function
-    
-    function arrangeCard() { 
-    cardArray.sort(() => 0.5 - Math.random())
+  });
+  
+ function activateTheme(theme) {
+    // insert theme in images array
+    switch (theme) {
+      case "dbz":
+        for (let i=0; i<12; i++) {images.push(library.dbz[i]);}
+        break;
     }
-    
-    // flip Card function
-    
-    function flipCard() { 
-    let selected = this.dataset.id;
-    cardsSelected.push(cardArray[selected].name); 
-    cardsId.push(selected); 
-    this.classList.add("flip"); 
-    this.setAttribute("src", cardArray[selected].img); 
-    if (cardsId.length === 2) { 
-    setTimeout(checkForMatch, 500);
-    } 
+    // insert images in memory game
+    for (let i=0; i<12; i++) {
+      var rand = Math.floor(Math.random() * (images.length-1));
+      boxElts[i].innerHTML = "<img src='" + images[rand] + "' alt='image' class='hidden'>";
+      images.splice(rand, 1);
     }
-
-    // checkForMatch function
-
-function checkForMatch() { 
-    let imgs = document.querySelectorAll("img"); 
-    let firstCard = cardsId[0];
-    let secondCard = cardsId[1];
-    if (cardsSelected[0] === cardsSelected[1] && firstCard !== secondCard) { 
-    alert("you have found a match"); 
-    cardsWon += 1; 
-    scoreBoard.innerHTML = cardsWon; 
-    setTimeout(checkWon,500) 
-    } else { 
-    imgs[firstCard].setAttribute("src", "img/cardback.jpg");
-    imgs[secondCard].setAttribute("src", "img/cardback.jpg"); alert("wrong, please try again"); imgs[firstCard].classList.remove("flip"); imgs[secondCard].classList.remove("flip"); 
-    } 
-    cardsSelected = []; 
-    cardsId = []; 
-    clicks += 1; 
-    clickBoard.innerHTML = clicks; 
+  }
+  
+  
+  // Handle the play
+  mainElt.addEventListener("click", gameLogic);
+  
+  function gameLogic(e) {
+    // make sure the box is playable
+    if (e.target.classList.contains("play")) {
+      e.target.firstChild.classList.remove("hidden");
+      // first of two click
+      if (click < 1) {
+        tempElt1 = e.target;
+        // timer
+        if (click === -1) {
+          timer = setInterval(function() {
+            time++;
+            timeElt.innerHTML = time;
+          }, 1000);
+        }
+        click = 1;
+      }
+  
+      // second click
+      else if (e.target !== tempElt1) {
+        tempElt2 = e.target;
+  
+        // different images
+        if (tempElt1.firstChild.src !== tempElt2.firstChild.src) {
+          mainElt.removeEventListener("click", gameLogic);
+          setTimeout( function() {
+            tempElt1.firstChild.classList.add("hidden");
+            tempElt2.firstChild.classList.add("hidden");
+            mainElt.addEventListener("click", gameLogic);
+          }, 400);
+          if (score > 0){
+            score -= 2;
+          }
+          scoreElt.innerHTML = score;
+        }
+  
+        // same images
+        else {
+          score += 10;
+          win += 2;
+          tempElt1.firstChild.classList.add("outlined");
+          tempElt2.firstChild.classList.add("outlined");
+          tempElt1.classList.remove("play");
+          tempElt2.classList.remove("play");
+          scoreElt.innerHTML = score;
+  
+          // game won
+          if (win === 12) {
+            clearTimeout(timer);
+            finalElt.innerHTML = "You won in " + time + " seconds";
+            postElt.classList.remove("hidden");
+          }
+        }
+        click = 0;
+      }
     }
-    
-    function checkWon() {
-    if (cardsWon == cardArray.length / 2) {
-    alert("You won") 
-    setTimeout(()=> popup.style.display = "flex" ,300); 
+  }
+  
+  againElt.addEventListener("click", resetGame);
+  
+  function resetGame() {
+    // reset game
+    tempElt1 = "";
+    tempElt2 = "";
+    click = -1;
+    win = 0;
+    score = 0;
+    time = 0;
+    postElt.classList.add("hidden");
+    preElt.classList.remove("hidden");
+    for (let i=0; i<12; i++) {
+      boxElts[i].classList.add("play");
+      boxElts[i].firstChild.classList.add("hidden");
     }
-    }
-
-    // The replay function
-
-function replay() { 
-    arrangeCard(); 
-    grid.innerHTML = "";
-    createBoard(grid, cardArray);
-    cardsWon = 0;
-    clicks = 0; 
-    clickBoard.innerHTML = 0; 
-    scoreBoard.innerHTML = 0; 
-    popup.style.display = "none"; 
-    }
+    timeElt.textContent = time;
+    scoreElt.textContent = score;
+  }
+  
+  // handle focus of the page
+  // function checkPageFocus() {
+  //   if (document.hasFocus()) {
+  //     preElt.classList.remove("hidden");
+  //   }
+  //   else {
+  //     preElt.classList.add("hidden");
+  //   }
+  // }
+  // var checkPageInterval = setInterval(checkPageFocus, 300);
+  

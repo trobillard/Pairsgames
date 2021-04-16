@@ -21,12 +21,12 @@
 
   <meta name="theme-color" content="#fafafa">
 </head>
-<body>
+<body class="memogame">
   <nav class="navba navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img src="img/navbalogo.jpg"></a>
       <button class="buttonnav navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <ion-icon class="neon" name="flash-outline"></ion-icon>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
@@ -54,25 +54,72 @@
     </div>
   </nav>
     <!-- MAIN -->
-  <main>
+  <main class="gamedbz">
     <div class="container text-center">
       <header class="header">
-        <img src="img/dbz.jpg">
+        <img id="title" src="img/dbz.jpg">
         <h1>Memory Game</h1>
-    <div>
+      </header>
+    </div>
     
-      <div class="container1">
-        <div class="data">
-          <div class="score">Score : <span class="scoreBoard">0</span></div>
-          <div class="click">Click : <span class="clickBoard">0</span></div>
+      
+      
+      <section class="main">
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div id="state">
+          <span id="time">0</span>
+          <span id="score">0</span>
         </div>
-        <div class="grid">
-        <div class="popup">
-          <button class="playAgain">play Again</button>
+      </section>
+      
+      
+      <section id="pre" class="">
+        <div id="themes">
+          <h3>Ready to start ?</h3>
+          <a class ="neon"><p id="dbz" class="themes" title="dbz">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Start</p></a>
         </div>
+      </section>
+      
+      
+      <section id="post" class="hidden">
+        <div>
+          <h3>Congrats</h3>
+          <p id="final"></p>
+          <br>
+          <p>
+            <a class="neon" id="again">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Play Again !</a>
+          </p>
+            <a class="neon" href="homepage.html">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Home
+            </a>
         </div>
-        </div>
-    
+      </section>
+      
       
   </main>
 <!-- End of MAIN -->
