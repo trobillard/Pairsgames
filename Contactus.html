@@ -26,7 +26,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img src="img/navbalogo.jpg"></a>
       <button class="buttonnav navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <ion-icon class="neon" name="flash-outline"></ion-icon>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
@@ -53,45 +53,43 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <img src="..." class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
-          </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img src="..." class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="..." class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+  <main class="container">
+    <h2>Contact Us</h2>
+    <form class="mt-5 fullForm" method="post" action="">
+    <div class="form-group">
+      <label for="usr">FirstName:</label>
+      <input type="text" class="form-control" id="usr" required><br>
     </div>
+    <div class="form-group">
+      <label for="usr">Lastname:</label>
+      <input type="text" class="form-control" id="usr" required><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required><br>
+    </div>
+    <div class="form-group">
+      <label for="message">Your Message : </label>
+      <textarea class="form-control" id="message" rows="3" aria-describedby="messageHelp"></textarea>
+      <small class="form-text text-muted">Remaining caracter : <span id="count"></span></small>
+      <small id="messageHelp" class="form-text text-muted"></small>
+    </div>
+    <div class="text-center">
+      <a class="neon" type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </a>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+      <label class="form-check-label" for="flexCheckDefault">
+        I accept Terms and Conditions
+      </label>
+    </div>
+  </form>
   </main>
   <!-- Footer -->
   <footer class="bg-dark text-center text-white">
