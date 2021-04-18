@@ -1,6 +1,6 @@
 // Declaration of the var
 
-// Add a var library where we can add other theme
+// Add a var library where we can add other theme in the future
 const library = {   
     dbz: [
       'img/cart1.jpg',
@@ -17,7 +17,7 @@ const library = {
       'img/cart6.jpg',
     ],
   }
-  
+//Defined the var 
 let images = [];
 let tempElt1 = "";
 let tempElt2 = "";
@@ -36,7 +36,7 @@ let postElt = document.querySelector("#post");
 let finalElt = document.querySelector("#final");
 let againElt = document.querySelector("#again");
 
-  // initiate the game with chosen theme
+  // initiate the game with chosen theme (in here only one theme)
   themesElt.addEventListener("click", function(e) {
     if (e.target.classList.contains("themes")) {
       activateTheme(e.target.id);
@@ -45,7 +45,7 @@ let againElt = document.querySelector("#again");
   });
   
  function activateTheme(theme) {
-    // insert theme in images array
+    // insert theme in images array (in case we had differents theme just add another switch)
     switch (theme) {
       case "dbz":
         for (let i=0; i<12; i++) {images.push(library.dbz[i]);}
