@@ -1,7 +1,7 @@
 // Declaration of the var
 
 // Add a var library where we can add other theme
-var library = {   
+const library = {   
     dbz: [
       'img/cart1.jpg',
       'img/cart2.jpg',
@@ -18,23 +18,23 @@ var library = {
     ],
   }
   
-  var images = [],
-      tempElt1 = "",
-      tempElt2 = "",
-      click = -1,
-      win = 0,
-      score = 0,
-      time = 0;
+let images = [];
+let tempElt1 = "";
+let tempElt2 = "";
+let click = -1;
+let win = 0;
+let score = 0;
+let time = 0;
   
-  var preElt = document.querySelector("#pre"),
-      themesElt = document.querySelector("#themes"),
-      boxElts = document.getElementsByClassName("box"),
-      mainElt = document.querySelector(".main"),
-      timeElt = document.querySelector("#time"),
-      scoreElt = document.querySelector("#score"),
-      postElt = document.querySelector("#post"),
-      finalElt = document.querySelector("#final"),
-      againElt = document.querySelector("#again");
+let preElt = document.querySelector("#pre");
+let themesElt = document.querySelector("#themes");
+let boxElts = document.getElementsByClassName("box");
+let mainElt = document.querySelector(".main");
+let timeElt = document.querySelector("#time");
+let scoreElt = document.querySelector("#score");
+let postElt = document.querySelector("#post");
+let finalElt = document.querySelector("#final");
+let againElt = document.querySelector("#again");
 
   // initiate the game with chosen theme
   themesElt.addEventListener("click", function(e) {
@@ -140,14 +140,4 @@ var library = {
     scoreElt.textContent = score;
   }
   
-  // handle focus of the page
-  // function checkPageFocus() {
-  //   if (document.hasFocus()) {
-  //     preElt.classList.remove("hidden");
-  //   }
-  //   else {
-  //     preElt.classList.add("hidden");
-  //   }
-  // }
-  // var checkPageInterval = setInterval(checkPageFocus, 300);
   
