@@ -285,7 +285,7 @@ a.neon:hover span:nth-child(4){
   
   /* =======================Main SECTION======================== */
   .main {
-    width: 98%;
+    width: 90%;
     height:30%;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -301,8 +301,8 @@ a.neon:hover span:nth-child(4){
   .box {
     background-image: url(../img/cardback.jpg);
     background-size: 250%;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     float: left;
     margin: 10px 0 0 10px;
   }
@@ -450,11 +450,6 @@ a.neon:hover span:nth-child(4){
       width: 48%;
       padding-left: 1em;
       padding-right: 1em;
-    }
-
-    .box {
-      width: 100px;
-      height: 100px;
     }
 
     #state{
